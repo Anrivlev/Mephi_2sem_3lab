@@ -60,9 +60,23 @@ public:
 		data[0] = elem;
 		this->size = 1;
 	}
+	~BinaryHeap()
+	{
+		delete[] data;
+		this->size = 0;
+	}
 	int getSize()
 	{
 		return this->size;
+	}
+	T getMin()
+	{
+		if (!this->size)
+		{
+			std::cout << "QUEUE IS EMPTY!";
+			exit(1);
+		}
+		return this->data[0];
 	}
 	void add(T elem)
 	{
