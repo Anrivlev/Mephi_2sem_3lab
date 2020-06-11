@@ -10,7 +10,7 @@ private:
 		node* left = nullptr;
 		node* right = nullptr;
 		T elem = T(0);
-	}
+	};
 	node* root = nullptr;
 	int size = 0;
 	
@@ -96,13 +96,45 @@ private:
 		else if (delNode->right != nullptr && delNode->left != nullptr)
 		{
 			node* swapNode = next(delNode);
-			T tmp_value = delNode->key;
-			delNode->key = swapNode->key;
-			swapNode->key = tmp_value;
+			T tmp_value = delNode->elem;
+			delNode->elem = swapNode->elem;
+			swapNode->elem = tmp_value;
 			this->erase_(swapNode);
 		}
 	}
+	node* next(node* nodePtr)
+	{
+		if (nodePtr == nullptr) return nullptr;
+		if (nodePtr->right != nullptr)
+		{
+			nodePtr = nodePtr->right;
+			while (nodePtr->left != nullptr)
+			{
+				nodePtr = nodePtr->left;
+			}
+			return nodePtr;
+		}
+		else if (nodePtr->parent->left == nodePtr)
+		{
+			return nodePtr->parent;
+		}
+		else return nullptr;
+	}
+void dfs(node* nodePtr)
 
+	{
+		if (nodePtr == nullptr) return;
+		if (nodePtr->left != nullptr)
+		{
+			dfs(nodePtr->left);
+			std::cout << "\nLEFT " << nodePtr->left->elem << " | PARENT " << nodePtr->left->parent->elem;
+		}
+		if (nodePtr->right != nullptr)
+		{
+			dfs(nodePtr->right);
+			std::cout << "\nRIGHT " << nodePtr->right->elem << " | PARENT " << nodePtr->right->parent->elem;;
+		}
+	}
 public:
 	BinaryTree() = default;
 	BinaryTree(const T rootElem)
@@ -113,7 +145,7 @@ public:
 	}
 	~BinaryTree()
 	{
-		destrustor(this->root);
+		destructor(this->root);
 		size = 0;
 		delete this->root;
 	}
@@ -161,8 +193,8 @@ public:
 		node* delNode = search(elem);
 		if(delNode == nullptr) return;
 		
-		erase_(del_node);
-		this->size--;
+		erase_(delNode);
+		--this->size;
 	}
 	T minimum()
 	{
@@ -201,4 +233,11 @@ public:
 		dfs(this->root);
 		std::cout << "\nROOT " << this->root->elem;
 	}
-}
+	T next(const T elem)
+	{
+		node* nodePtr = search(elem);
+		nodePtr = next(nodePtr);
+		if (nodePtr == nullptr) return 0;
+		return nodePtr->elem;
+	}
+};

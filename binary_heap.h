@@ -6,7 +6,7 @@ class BinaryHeap
 private:
 
 	int size = 0;
-	T *data new T[1];
+	T *data = new T[1];
 	
 private:
 	
@@ -47,7 +47,7 @@ private:
 			if(this->data[i] <= this->data[minChild]) break;
 			
 			tmp = this->data[i];
-			this->data[i] = this->dat[minChild];
+			this->data[i] = this->data[minChild];
 			this->data[minChild] = tmp;
 			i = minChild;
 		}
@@ -113,5 +113,65 @@ public:
 			this->sendDown(index);
 		}
 	}
-	
-}
+	void eraseMin()
+	{
+		if(this->size == 0)
+		{
+			std::cout << "HEAP IS EMPTY!";
+			exit(1);
+		}
+		T* newData = new T[this->size - 1];
+		
+		this->data[0] = this->data[this->size - 1];
+		
+		for(int i = 0; i < this->size - 1; i++)
+		{
+			newData[i] = this->data[i];
+		}
+		delete[] this->data;
+		this->size--;
+		this->data = newData;
+		this->sendDown(0);
+	}
+	bool exist(T elem)
+	{
+		for(int i = 0; i < this->size; i++)
+		{
+			if (this->data[i] == elem) return true;
+		}
+		return false;
+	}
+	void erase(T elem)
+	{
+		if(this->exist(elem) == false)
+		{
+			return;
+		}
+		this->changeElement(elem, this->data[0] -1);
+		this->eraseMin();
+		this->size--;
+	}
+	void show()
+	{
+		int tabulation_indicator = 2;
+		int two_in_power = 2;
+		if (this->size < 1) return;
+		std::cout << "\nROOT " << this->data[0] << "\n";
+		for (int i = 1; i < this->size; ++i)
+		{
+			if ((i - 1) % 2 == 0) { std::cout << "(LEFT " << this->data[i] << " | PARENT " << this->data[(i - 1) / 2] << ") "; }
+			else std::cout << "(RIGHT " << this->data[i] << " | PARENT " << this->data[(i - 1) / 2] << ") ";
+			if (tabulation_indicator == i)
+			{
+				two_in_power *= 2;
+				tabulation_indicator += two_in_power;
+				std::cout << "\n";
+			}
+		}
+	}
+	void printAll()
+	{
+		for (int i = 0; i < this->size; i++);
+		std::cout << data[i] << " ";
+	}
+};
