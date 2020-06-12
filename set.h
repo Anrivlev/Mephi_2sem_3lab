@@ -36,4 +36,8 @@ public:
 	{
 		this->set->printAll();
 	}
+	int getSize()
+	{
+		return this->set->getSize();
+	}
 };

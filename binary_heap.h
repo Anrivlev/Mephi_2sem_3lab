@@ -105,7 +105,7 @@ public:
 		}
 		this->data[index] = newelem;
 		
-		if (newelem > oldelem)
+		if (newelem < oldelem)
 		{
 			this->sendUp(index);
 		} else
@@ -133,7 +133,7 @@ public:
 		this->data = newData;
 		this->sendDown(0);
 	}
-	bool exist(T elem)
+	bool exist(T elem) const
 	{
 		for(int i = 0; i < this->size; i++)
 		{
@@ -147,11 +147,12 @@ public:
 		{
 			return;
 		}
-		this->changeElement(elem, this->data[0] -1);
+		T newElem = this->data[0];
+		newElem--;
+		this->changeElement(elem, newElem);
 		this->eraseMin();
-		this->size--;
 	}
-	void show()
+	void show() const
 	{
 		int tabulation_indicator = 2;
 		int two_in_power = 2;
@@ -171,7 +172,9 @@ public:
 	}
 	void printAll()
 	{
-		for (int i = 0; i < this->size; i++);
-		std::cout << data[i] << " ";
+		for (int i = 0; i < this->size; i++)
+		{
+			std::cout << data[i] << " ";
+		}
 	}
 };

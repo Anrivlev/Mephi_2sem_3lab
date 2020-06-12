@@ -5,13 +5,13 @@
 
 
 
-
-void BinaryHeapInterface(int root)
+template<class T>
+void BinaryHeapInterface(T root)
 {
-	BinaryHeap<int> bheap(root);
+	BinaryHeap<T> bheap(root);
 	
 	int choice = 0;
-	int elem = 0;
+	T elem = 0;
 	
 	while(true)
 	{
@@ -67,13 +67,13 @@ void BinaryHeapInterface(int root)
 	}
 }
 
-
-void BinaryTreeInterface(int root)
+template<class T>
+void BinaryTreeInterface(T root)
 {
-	BinaryTree<int> btree(root);
+	BinaryTree<T> btree(root);
 	
 	int choice = 0;
-	int elem = 0;
+	T elem = 0;
 	
 	while(true)
 	{
@@ -137,13 +137,13 @@ void BinaryTreeInterface(int root)
 	}
 }
 
-
-void SetInterface(int initElem)
+template<class T>
+void SetInterface(T initElem)
 {
-	Set<int> set(initElem);
+	Set<T> set(initElem);
 	
 	int choice = 0;
-	int elem = 0;
+	T elem = 0;
 	
 	while(true)
 	{

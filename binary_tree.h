@@ -240,4 +240,8 @@ public:
 		if (nodePtr == nullptr) return 0;
 		return nodePtr->elem;
 	}
+	int getSize() const
+	{
+		return this->size;
+	}
 };
