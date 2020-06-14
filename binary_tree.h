@@ -121,7 +121,6 @@ private:
 		else return nullptr;
 	}
 void showDFS(node* nodePtr)
-
 	{
 		if (nodePtr == nullptr) return;
 		if (nodePtr->left != nullptr)
@@ -133,6 +132,19 @@ void showDFS(node* nodePtr)
 		{
 			showDFS(nodePtr->right);
 			std::cout << "\nRIGHT " << nodePtr->right->elem << " | PARENT " << nodePtr->right->parent->elem;;
+		}
+	}
+void printAll(node* nodePtr)
+	{
+		if (nodePtr == nullptr) return;
+		if (nodePtr->left != nullptr)
+		{
+			printAll(nodePtr->left);
+		}
+		std::cout << nodePtr->elem << " ";
+		if (nodePtr->right != nullptr)
+		{
+			printAll(nodePtr->right);
 		}
 	}
 public:
@@ -243,5 +255,10 @@ public:
 	int getSize() const
 	{
 		return this->size;
+	}
+	void printAll()
+	{
+		if(this->root == nullptr) return;
+		printAll(this->root);
 	}
 };

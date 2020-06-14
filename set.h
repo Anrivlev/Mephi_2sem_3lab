@@ -5,12 +5,12 @@ class Set
 {
 private:
 
-	BinaryHeap<T>* set;
+	BinaryTree<T>* set;
 	
 public:
 	Set(const T elem)
 	{
-		this->set = new BinaryHeap<T>(elem);
+		this->set = new BinaryTree<T>(elem);
 	}
 	~Set() = default;
 	void add(const T elem)
