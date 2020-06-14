@@ -1,2 +1,2 @@
 # Mephi_2sem_3lab
- Binary heap C++
+ Binary Heap, Binary Tree and Set(Binary Heap) C++
