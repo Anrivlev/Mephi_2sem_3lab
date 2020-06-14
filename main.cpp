@@ -126,7 +126,7 @@ void BinaryTreeInterface(T root)
 				std::cout << btree.maximum();
 				break;
 			case 6:
-				btree.dfs();
+				btree.showDFS();
 				break;
 			case 7:
 				exit(0);
@@ -202,27 +202,59 @@ void SetInterface(T initElem)
 int main()
 {
 	int choiceStructure = 0;
+	int choiceElements = 0;
 	int initInt = 0;
+	double initReal = 0;
 	
 	std::cout << "1. Binary heap\n2. Binary tree\n3. Set\n";
 	std::cout << "Choose type of data structure: ";
 	std::cin >> choiceStructure;
-	std::cout << "\nInput first element of structure: \n";
-	std::cin >> initInt;
-	switch(choiceStructure)
+	std::cout << "1. Integer\n2. Real\n";
+	std::cout << "Choose type of elements: ";
+	std::cin >> choiceElements;
+	if(choiceElements == 1)
 	{
-		case 1:
-			BinaryHeapInterface(initInt);
-			break;
-		case 2:
-			BinaryTreeInterface(initInt);
-			break;
-		case 3:
-			SetInterface(initInt);
-			break;
-		default:
-			std::cout << "INCORRECT TYPE OF STRUCTURE";
-			exit(1);
+		std::cout << "\nInput first element of structure: \n";
+		std::cin >> initInt;
+		switch(choiceStructure)
+		{
+			case 1:
+				BinaryHeapInterface(initInt);
+				break;
+			case 2:
+				BinaryTreeInterface(initInt);
+				break;
+			case 3:
+				SetInterface(initInt);
+				break;
+			default:
+				std::cout << "INCORRECT TYPE OF STRUCTURE";
+				exit(1);
+		}
+	} else if (choiceElements == 2)
+	{
+		std::cout << "\nInput first element of structure: \n";
+		std::cin >> initReal;
+		switch(choiceStructure)
+		{
+			case 1:
+				BinaryHeapInterface(initReal);
+				break;
+			case 2:
+				BinaryTreeInterface(initReal);
+				break;
+			case 3:
+				SetInterface(initReal);
+				break;
+			default:
+				std::cout << "INCORRECT TYPE OF STRUCTURE";
+				exit(1);
+		}
+	
+	} else
+	{
+		std::cout << "INCORRECT TYPE OF ELEMENT";
 	}
+	
 	return 0;
 }

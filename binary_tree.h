@@ -120,18 +120,18 @@ private:
 		}
 		else return nullptr;
 	}
-void dfs(node* nodePtr)
+void showDFS(node* nodePtr)
 
 	{
 		if (nodePtr == nullptr) return;
 		if (nodePtr->left != nullptr)
 		{
-			dfs(nodePtr->left);
+			showDFS(nodePtr->left);
 			std::cout << "\nLEFT " << nodePtr->left->elem << " | PARENT " << nodePtr->left->parent->elem;
 		}
 		if (nodePtr->right != nullptr)
 		{
-			dfs(nodePtr->right);
+			showDFS(nodePtr->right);
 			std::cout << "\nRIGHT " << nodePtr->right->elem << " | PARENT " << nodePtr->right->parent->elem;;
 		}
 	}
@@ -227,10 +227,10 @@ public:
 		}
 		else return false;
 	}
-	void dfs()
+	void showDFS()
 	{
 		if(this->root == nullptr) return;
-		dfs(this->root);
+		showDFS(this->root);
 		std::cout << "\nROOT " << this->root->elem;
 	}
 	T next(const T elem)
